@@ -1,0 +1,94 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/sls
+    docker:
+    - image: cibuilds/hugo:0.54
+    steps:
+    - checkout
+    - attach_workspace:
+        at: ~/sls
+    - run:
+        name: "Run Hugo"
+        command: HUGO_ENV=production hugo -v -s ./
+    - persist_to_workspace:
+        root: .
+        paths: .
+
+  deploy:
+    working_directory: ~/sls
+    docker:
+    - image: registry.gitlab.com/exporo/circleci-stretch-node-awscli:latest
+    steps:
+    - attach_workspace:
+        at: ~/sls
+    - run:
+        name: Install cfn-create-or-update
+        command: |
+          sudo npm install -g cfn-create-or-update
+    - run:
+        name: Deploy Cloudformation
+        command: >
+          cfn-create-or-update --stack-name ${CIRCLE_PROJECT_REPONAME//_/-}-www-prev --wait --template-body file://cloudformation.yml --region eu-central-1 --parameters
+          ParameterKey=DomainName,ParameterValue=\"${BASE_DOMAIN}\"
+          ParameterKey=CFDomainName,ParameterValue=\"dev.${BASE_DOMAIN}\"
+          ParameterKey=AcmCertificateArn,ParameterValue=\"${SSL_CERT_ARN}\"
+        no_output_timeout: 40m
+    - run:
+        name: Add Disallow indexing robots.txt
+        command: |
+          echo -e "User-agent: *\nDisallow: /" >> public/robots.txt
+    - run:
+        name: Deploy Preview
+        command: aws s3 sync --delete --acl public-read ./public/ s3://${CIRCLE_PROJECT_REPONAME//_/-}-www-prev/$CIRCLE_BRANCH
+        no_output_timeout: 2m
+
+  deployProd:
+    working_directory: ~/sls
+    docker:
+    - image: registry.gitlab.com/exporo/circleci-stretch-node-awscli:latest
+    steps:
+    - attach_workspace:
+        at: ~/sls
+    - run:
+        name: Install cfn-create-or-update
+        command: |
+          sudo npm install -g cfn-create-or-update
+    - run:
+        name: Deploy Cloudformation
+        command: >
+          cfn-create-or-update --stack-name ${CIRCLE_PROJECT_REPONAME//_/-}-www-prod --wait --template-body file://cloudformation.yml --region eu-central-1 --parameters
+          ParameterKey=DomainName,ParameterValue=\"${BASE_DOMAIN}\"
+          ParameterKey=CFDomainName,ParameterValue=\"${BASE_DOMAIN}\"
+          ParameterKey=AcmCertificateArn,ParameterValue=\"${SSL_CERT_ARN}\"
+        no_output_timeout: 40m
+    - run:
+        name: Deploy Prod
+        command: aws s3 sync --delete --acl public-read ./public/ s3://${CIRCLE_PROJECT_REPONAME//_/-}-www-prod/
+        no_output_timeout: 2m
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+    - build
+
+    - deploy:
+        requires:
+        - build
+
+    - hold:
+        type: approval
+        requires:
+        - deploy
+        filters:
+          branches:
+            only: master
+
+    - deployProd:
+        requires:
+        - hold
+        filters:
+          branches:
+            only: master
+
