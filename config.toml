@@ -45,21 +45,20 @@ paginate = 4
   name = "Documentation"
   URL = "documentation"
   weight = 1
+  
+  [[menu.main]]
+  name = "ABOUT"
+  URL = "about"
+  weight = 2
 
   [[menu.main]]
-    name = "github"
-    URL = "github"
-    weight = 2
-
-  [[menu.main]]
-    name = "changelog"
-    URL = "changelog"
-    weight = 3
-
+  name = "CONTACT"
+  URL = "contact"
+  weight = 3
 
 #################### default parameters ################################
 [params]
-logo = "images/TSCIRCLE_Final_Logo_With_Font.svg"
+logo = "images/circle_logo.svg"
 home = "Home"
 # Meta data
 description = "This is meta description"
@@ -84,7 +83,7 @@ googleAnalitycsID = "Your ID"
 
   ############################## footer ################################
   [params.footer]
-  title = "tscircle."
+  title = "tscircle"
   content = "We are a creative-led experiential Event Production Agency that helps brands connect, engage and evolve."
   copyright = "Copyright Reserved to Henrik Lippke"
 

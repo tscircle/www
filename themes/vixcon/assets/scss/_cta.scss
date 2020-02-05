@@ -1,16 +1,16 @@
 .counter-wrapper {
 	margin-top: -70px;
-	background-color: map-get($theme-colors, "banner_bgcolor");
+	background: $white;
 }
 
 .counter-inner {
 	position: relative;
-	padding: 30px;
+	padding: 10px;
 
 	&:before {
 		position: absolute;
 		content: "";
-		left: 0%;
+		left: -5%;
 		top: 0;
 		width: 200%;
 		height: 100%;
@@ -23,7 +23,6 @@
 		p {
 			font-size: 1.5rem;
 			line-height: 1;
-			color: #222222;
 		}
 	}
 
@@ -33,9 +32,14 @@
 	}
 }
 
+.syotimer.large .syotimer-cell {
+	height: 100px;
+	width: 100px;
+}
+
 .syotimer-cell {
 	display: inline-block;
-	height: 100px;
+	height: 80px;
 	border-radius: 3px;
 	background: rgba(255, 255, 255, .7);
 	text-align: center;
@@ -50,7 +54,7 @@
 
 .syotimer-cell__value {
 	font-weight: 800;
-	font-size: 38px;
+	font-size: 32px;
 	line-height: 45px;
 	color: $black;
 }
@@ -59,56 +63,57 @@
 	color: $primary-color;
 }
 
-@include large-desktop {
-	.syotimer-cell__value {
-	    font-size: 30px;
-	}
-}
 
-@include desktop {
-	.counter-inner {
-		.counter-stat h2 {
-			margin-top: 10px;
-			font-size: 32px;
-		}
-	}
-}
 
-@include tablet {
-	.syotimer-cell {
-		height: 70px;
+@include mobile{
+	.syotimer-cell{
+		width: 46%;
+		margin-bottom: 20px;
 	}
 
 	.syotimer-cell__value {
-	    font-size: 24px;
-    	line-height: 40px;
+	    font-size: 69px;
+	    line-height: 70px;
+	}
+
+	.counter-inner:before {
+	    left: 0%;
+	}
+
+	.counter-stat h2{
+		font-size: 32px;
 	}
 }
 
-@include mobile {
-	.syotimer-cell {
-		height: 45px;
-		margin-bottom: 10px;
+@include mobile-xs{
+	.syotimer-cell{
+		width: 46%;
+		margin-bottom: 20px;
+	}
+	.counter-inner:before {
+	    left: 0%;
+	}
+	.counter-stat h2{
+		font-size: 32px;
 	}
 
-	.syotimer-cell__value {
-	    font-size: 1.5rem;
-	    line-height: 30px;
-	}
-	.counter-inner {
-		.counter-stat h2 {
-			font-size: 28px;
-		}
-	}
 }
 
-@include mobile-xs {
-	.syotimer-cell {
-		margin-bottom: 0;
-		padding-top: 10px;
+@include tablet{
+	.syotimer-cell{
+		width: 46%;
+		margin-bottom: 20px;
 	}
+
 	.syotimer-cell__value {
-	    font-size: 1.2rem;
-	    line-height: 30px;
+	    font-size: 69px;
+	    line-height: 70px;
+	}
+
+	.counter-inner:before {
+	    left: 0%;
+	}
+	.counter-stat h2{
+		font-size: 32px;
 	}
 }
