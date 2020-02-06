@@ -1,18 +1,19 @@
 .section-banner {
-  min-height: 500px;
+  min-height: 700px;
   position: relative;
   background-image: url(map-get($theme-colors, "banner_img"));
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-color: map-get($theme-colors, "banner_bgcolor");
   background-size: cover;
-  background-position: 388px -576px;
+  background-position: 388px -376px;
+  font-family: poppins, sans-serif;
 
   .banner-content {
     .brand {
-      font-size: 45px;
-      line-height: 1.11;
-      letter-spacing: 1.4px;
+      font-size: 100px;
+      line-height: 1.2;
+      letter-spacing: -.04em;
 
       img {
         width: 50px;
@@ -20,8 +21,9 @@
       }
     }
     p {
-      font-size: 2.14rem;
-      font-weight: 300;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
     }
   }
 }
@@ -34,16 +36,17 @@
 
 @include desktop {
   .section-banner {
-    min-height: 480px;
     background-position: 250px -380px;
   }
 }
 
-@include mobile {
-	.section-banner {
+@include tablet {
+  .section-banner {
+    min-height: 515px;
+    background-position: 350px -380px;
     .banner-content {
       .brand {
-        font-size: 2.3rem;
+        font-size: 60px;
       }
     }
   }
@@ -53,7 +56,7 @@
 	.section-banner {
     .banner-content {
       .brand {
-        font-size: 2.0rem;
+        font-size: 3.0rem;
       }
       p {
         font-size: 1.5rem;
