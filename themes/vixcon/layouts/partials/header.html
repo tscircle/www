@@ -4,7 +4,8 @@
     <div class="container">
       <!-- LOGO BAR -->
       <a class="navbar-brand" href="{{ .Site.BaseURL }}">
-        <img src="{{ .Site.Params.logo | absURL }}" width="68px" alt="{{ .Site.Title }}" class="img-fluid logo-b">
+        <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}" class="img-fluid">
+        <span class="font-blacki">TS</span><span class="font-lighti">CIRCLE</span>
       </a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -13,8 +14,8 @@
       </button>
 
       <!--  MAIN MENU  -->
-      <div class="collapse navbar-collapse " id="navbarNavDropdown">
-        <ul class="navbar-nav">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto font-black">
           {{ range .Site.Menus.main }}
           {{ if .HasChildren }}
           <li class="nav-item dropdown">

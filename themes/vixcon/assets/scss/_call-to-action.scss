@@ -1,47 +1,46 @@
-.cta{
+.cta {
 	position: relative;
 
-	&:before{
+	&:before {
 		position: absolute;
-		content:"";
+		content: "";
 		left: 0px;
-		top:0px;
+		top: 0px;
 		width: 50%;
 		height: 70%;
 		background: url("../images/about/bg-1.jpg");
 		background-size: cover;
 	}
 
-	.cta-content{
-		border:1px solid $border-color;
+	.cta-content {
+		border: 1px solid $border-color;
 	}
 }
 
 
 // CTA-2
-.cta-img{
+.cta-img {
 	position: relative;
 
-	.contact-info{
+	.contact-info {
 		position: absolute;
-		content:"";
+		content: "";
 		right: 40px;
-		bottom:-90px;
+		bottom: -90px;
 		background: $white;
-		padding:60px 50px;
+		padding: 60px 50px;
 	}
 
 }
 
 // Subscribe cta-3
-
-.sub-form{
+.sub-form {
 	position: relative;
-	.form-control{
-		border-color:$secondary-color;
+	.form-control {
+		border-color: $secondary-color;
 		height: 51px;
 	}
-	.btn{
+	.btn {
 		position: absolute;
 		top: 0px;
 		right: -36px;
@@ -50,7 +49,7 @@
 		padding: 17px 35px;
 		border-radius: 0px 5px 5px 0px;
 
-		&:hover{
+		&:hover {
 			background: $black;
 			color: $white;
 		}

@@ -1,62 +1,66 @@
 .section-banner {
   min-height: 700px;
   position: relative;
-  background: #eee;
+  background-image: url(map-get($theme-colors, "banner_img"));
   background-repeat: no-repeat;
-  background-position: 65% 50%;
+  background-attachment: fixed;
+  background-color: map-get($theme-colors, "banner_bgcolor");
   background-size: cover;
+  background-position: 388px -376px;
+  font-family: poppins, sans-serif;
 
   .banner-content {
-    h1 {
+    .brand {
       font-size: 100px;
       line-height: 1.2;
       letter-spacing: -.04em;
 
-      @include desktop {
-        font-size: 80px;
+      img {
+        width: 50px;
+        vertical-align: text-top;
       }
+    }
+    p {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+  }
+}
 
-      @include tablet {
+@media (min-width: 1600px) {
+  .section-banner {
+    background-size: cover;
+  }
+}
+
+@include desktop {
+  .section-banner {
+    background-position: 250px -380px;
+  }
+}
+
+@include tablet {
+  .section-banner {
+    min-height: 515px;
+    background-position: 350px -380px;
+    .banner-content {
+      .brand {
         font-size: 60px;
       }
     }
+  }
+}
 
-    span {
-      color: #444;
-      font-size: 18px;
+@include mobile-xs {
+	.section-banner {
+    .banner-content {
+      .brand {
+        font-size: 3.0rem;
+      }
+      p {
+        font-size: 1.5rem;
+      }
     }
-  }
-}
-
-.banner-img {
-  position: absolute;
-  right: -160px;
-  top: 0px;
-}
-
-.divider {
-  width: 120px;
-  height: 6px;
-  background: $primary-color;
-  display: block;
-}
-
-
-@include mobile{
-  .section-banner {
-    background: #eee !important;
-    min-height: 500px;
-  }
-}
-@include mobile-xs{
-  .section-banner {
-    background: #eee !important;
-    min-height: 400px;
-  }
-}
-@include tablet{
-  .section-banner {
-    background: #eee !important;
-    min-height: 515px;
   }
 }

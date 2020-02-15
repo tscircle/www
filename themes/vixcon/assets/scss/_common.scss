@@ -14,10 +14,6 @@
   padding-bottom: 90px;
 }
 
-.mb-30 {
-  margin-bottom: 30px;
-}
-
 .section-heading {
   margin-bottom: 75px;
 
@@ -26,6 +22,24 @@
   }
 }
 
+.divider {
+  width: 120px;
+  height: 6px;
+  background: $primary-color;
+  display: block;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.pl-90 {
+	padding-left: 150px;
+}
+
+.content-padding {
+  padding: 220px 0px 200px 0px;
+}
 
 .form-control {
   border-color: $border-color;
@@ -42,24 +56,21 @@
   border-color: $primary-color;
 }
 
+.bg-primary {
+  background: $primary-color !important;
+}
 
 .bg-secondary {
   background: $secondary-color !important;
 }
 
-
-.bg-primary {
-  background: $primary-color !important;
-}
-
-.content-padding {
-  padding: 220px 0px 200px 0px;
+.bg-red {
+	background: $yellow;
 }
 
 .btn {
   line-height: 1;
   padding: 16px 32px;
-  box-shadow: 0 11px 22px rgba(34, 34, 34, .2);
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   will-change: box-shadow;
@@ -72,25 +83,19 @@
   font-family: $base-font;
 }
 
-
+.btn:focus,
+.btn.focus {
+  box-shadow: none;
+}
 
 .btn-rounded {
   border-radius: 60px;
 }
 
-.btn-hero {
-  background: $primary-color;
-  color: $white;
-  border-color: $primary-color;
-
-  &:hover {
-    background: $black;
-    border-color: $black;
-    color: $white;
-  }
+.btn-sm {
+  padding: 5px 18px;
+  border-radius: 50px;
 }
-
-
 
 .btn-secondary {
   background: $secondary-color;
@@ -104,23 +109,29 @@
   }
 }
 
+.btn-hero {
+  background: $primary-color;
+  border-color: $primary-color;
+  color: $white;
+
+  &:hover {
+    background: $hover-color;
+    border-color: $hover-color;
+    color: $white;
+  }
+}
 
 .btn-gray {
   background: $gray-light;
   color: $black;
 }
 
-.btn:focus,
-.btn.focus {
-  box-shadow: none;
+.text-color {
+  color: $primary-color;
 }
 
 .text-black {
   color: $black;
-}
-
-.text-color {
-  color: $primary-color;
 }
 
 .text-md {
@@ -129,13 +140,22 @@
 }
 
 .box-shadow {
-  box-shadow: 0 15px 38px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
 .border-left {
   border-left: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
-.overflow-hidden{
-  overflow: hidden;
+.error {
+  h3 {
+      font-size: 89px;
+      color: #888;
+  }
+}
+
+@include tablet {
+	.pl-90 {
+	    padding-left: 0px;
+	}
 }
